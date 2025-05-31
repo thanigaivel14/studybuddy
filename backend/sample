@@ -1,0 +1,15 @@
+{
+  "user": {
+    "username": "aaaa",
+    "email": "aaaa",
+    "password": "aaaa",
+    "_id": "6835fe8389f32688b7efe8ed"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzVmZTgzODlmMzI2ODhiN2VmZThlZCIsImlhdCI6MTc0ODM2OTAyNywiZXhwIjoxNzQ4NDU1NDI3fQ.XqZUQ0mmOgAv7LSkVXGl0YwgxkUa_lT9-g9XdCAESQI"
+}
+
+{
+  "username":"aaaa",
+  "email":"aaaa",
+  "password":"aaaa"
+}
