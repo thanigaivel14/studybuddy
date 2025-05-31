@@ -19,7 +19,7 @@ const Profile = () => {
   const [starAnimation, setStarAnimation] = useState(false);
 
   const imguri = user.avatar
-    ? `http://localhost:8000/api/uploads/${user.avatar}`
+    ? `https://studybuddy-idnp.onrender.com/api/uploads/${user?.avatar}`
     : "/default-avatar.png";
 
   useEffect(() => {
