@@ -10,7 +10,10 @@ const Nav = () => {
     localStorage.removeItem("user");
   };
 
-  const imguri = `https://studybuddy-idnp.onrender.com/api/uploads/${user?.avatar}`;
+  const imguri = user?.avatar
+  ? `https://studybuddy-idnp.onrender.com/api/uploads/${user.avatar}`
+  : "/avatar.png";
+
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-white/20 border-b border-white/30 shadow-lg px-4 sm:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between">
