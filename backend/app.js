@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 8000;
 app.use(cors({
   origin: [
     "http://localhost:5173",                         // local dev
-    "https://studybuddy-1-anup.onrender.com"        // deployed frontend
+    "https://studybuddy-1-c29u.onrender.com"        // deployed frontend
   ],
   credentials: true
 }));
