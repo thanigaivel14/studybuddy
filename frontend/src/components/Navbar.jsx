@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import logo from '../assets/logo.png';
+import logo from '../assests/logo.png';
 
 const Nav = () => {
   const { user, logout } = useAuth();
