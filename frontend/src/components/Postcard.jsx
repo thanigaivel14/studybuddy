@@ -73,7 +73,7 @@ const PostCard = ({ post, currentUserId }) => {
       <div className="flex items-center gap-4 mb-4">
         {post.author?.avatar && (
           <img
-            src={`https://studybuddy-idnp.onrender.com/api/uploads/${user?.avatar}`}
+            src={`https://studybuddy-idnp.onrender.com/api/uploads/${post.author?.avatar}`}
             alt="avatar"
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white shadow"
           />
