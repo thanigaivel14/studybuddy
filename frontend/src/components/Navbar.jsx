@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import logo from '../assets/logo.png';
 
 const Nav = () => {
   const { user, logout } = useAuth();
@@ -16,7 +17,7 @@ const Nav = () => {
       {/* Left: Logo */}
       <Link to="/" className="flex items-center gap-3 group mb-2 sm:mb-0">
         <img
-          src="src/assests/logo.png"
+          src={logo}
           alt="Logo"
           className="w-10 h-10 rounded-full shadow-md transition-transform duration-300 group-hover:scale-105"
         />
