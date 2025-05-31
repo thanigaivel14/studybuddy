@@ -16,10 +16,12 @@ dotenv.config();
 const PORT = process.env.PORT || 8000;
 
 // Middlewares
-app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // frontend origin
-  credentials: true                // allow sending cookies/auth headers
+  origin: [
+    "http://localhost:5173",                         // local dev
+    "https://studybuddy-1-anup.onrender.com"        // deployed frontend
+  ],
+  credentials: true
 }));
 
 // Routes
