@@ -2,6 +2,7 @@ import { useState } from "react";
 import API from "../api/axios";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from '../assests/logo.png';
 
 const PostCard = ({ post, currentUserId }) => {
   const [commentText, setCommentText] = useState("");
@@ -73,7 +74,7 @@ const PostCard = ({ post, currentUserId }) => {
       <div className="flex items-center gap-4 mb-4">
         {post.author?.avatar && (
           <img
-            src={`https://studybuddy-idnp.onrender.com/api/uploads/${post.author?.avatar}`}
+            src={post.author?.avatar || logo}
             alt="avatar"
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white shadow"
           />

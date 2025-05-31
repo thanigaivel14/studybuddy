@@ -30,8 +30,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/private',privateRoutes)
 app.use('/api/user', userRoutes);
 // Serve uploads folder 
-app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
-
 // Start server after DB connection
 try
 {

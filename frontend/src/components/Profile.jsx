@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import API from "../api/axios";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from '../assests/logo.png';
 
 const Profile = () => {
   const token = localStorage.getItem("token");
@@ -19,8 +20,8 @@ const Profile = () => {
   const [starAnimation, setStarAnimation] = useState(false);
 
   const imguri = user.avatar
-    ? `https://studybuddy-idnp.onrender.com/api/uploads/${user?.avatar}`
-    : "/default-avatar.png";
+    ? `${user?.avatar}`
+    : logo;
 
   useEffect(() => {
     const fetchPosts = async () => {

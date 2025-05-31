@@ -1,8 +1,7 @@
 import User from "../model/user.js";
 import Post from "../model/post.js";
 import bcrypt from 'bcryptjs';
-import fs from 'fs';
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
 
 // Get user profile with posts
 export const getUserProfile = async (req, res) => {
@@ -50,21 +49,23 @@ export const userupdate = async (req, res) => {
 
 // Upload new avatar
 export const uploadavatar = async (req, res) => {
+  console.log("uploaded called")
   try {
     const user = await User.findById(req.id);
     if (!user) return res.status(404).json({ message: "User not found" });
-
-    user.avatar = req.file.filename;
+    user.avatar = req.file.path;
+    user.avatarPublicId = req.file.filename;
     await user.save();
 
     res.status(200).json({
       message: "Avatar uploaded",
-      avatar: req.file.filename,
+      avatar: req.file.path,
     });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
-};
+
+}
 
 // Delete avatar
 export const deleteavatar = async (req, res) => {
@@ -72,16 +73,17 @@ export const deleteavatar = async (req, res) => {
     const user = await User.findById(req.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    const oldAvatar = user.avatar;
+    const oldAvatarPublicId = user.avatarPublicId;
+
     user.avatar = '';
+    user.avatarPublicId = '';
     await user.save();
 
-    if (oldAvatar) {
-      const filePath = path.resolve('uploads', oldAvatar);
+    if (oldAvatarPublicId) {
       try {
-        await fs.promises.unlink(filePath);
+        await cloudinary.uploader.destroy(oldAvatarPublicId);
       } catch (err) {
-        console.error("Failed to delete avatar file:", err.message);
+        console.error("Failed to delete avatar from Cloudinary:", err.message);
       }
     }
 
@@ -91,29 +93,33 @@ export const deleteavatar = async (req, res) => {
   }
 };
 
-// Update avatar and delete old one
 export const updateavatar = async (req, res) => {
   try {
     const user = await User.findById(req.id);
     if (!user) return res.status(404).json({ message: "User not found" });
-    const oldAvatar = user.avatar;
-    user.avatar = req.file.filename;
+
+    const oldAvatarPublicId = user.avatarPublicId;
+
+    // Save new avatar
+    user.avatar = req.file.path; // Cloudinary URL
+    user.avatarPublicId = req.file.filename; // or req.file.public_id depending on your multer-cloudinary config
     await user.save();
-  
-    if (oldAvatar) {
-      const filePath = path.resolve('uploads', oldAvatar);
+
+    // Delete old avatar from Cloudinary
+    if (oldAvatarPublicId) {
       try {
-        await fs.promises.unlink(filePath);
+        await cloudinary.uploader.destroy(oldAvatarPublicId);
       } catch (err) {
-        console.error("Error deleting old avatar:", err.message);
+        console.error("Error deleting old avatar from Cloudinary:", err.message);
       }
     }
 
     res.status(200).json({
       message: "Avatar updated successfully",
-      avatar: req.file.filename,
+      avatar: req.file.path, // Return full URL
     });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
 };
+

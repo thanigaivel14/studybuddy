@@ -11,8 +11,7 @@ const Nav = () => {
   };
 
   const imguri = user?.avatar
-  ? `https://studybuddy-idnp.onrender.com/api/uploads/${user.avatar}`
-  : "/avatar.png";
+  ? `${user.avatar}`:logo;
 
 
   return (
@@ -42,7 +41,7 @@ const Nav = () => {
           <>
             <Link to="/profile" title="Profile">
               <img
-                src={imguri || "/avatar.png"}
+                src={imguri || logo}
                 alt="Profile"
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-blue-400 shadow"
               />
