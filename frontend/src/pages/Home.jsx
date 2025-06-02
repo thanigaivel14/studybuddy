@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import API from "../api/axios";
 import Postcard from "../components/Postcard";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [currentUserId, setCurrentUserId] = useState(null);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
+  const {user} =useAuth();
 
   const fetchPosts = async () => {
     try {
@@ -37,7 +39,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, [token]);
+  }, [token,user]);
 
   const handleLikeToggle = async (postId) => {
     try {

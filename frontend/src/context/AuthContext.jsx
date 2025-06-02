@@ -16,12 +16,17 @@ export const AuthProvider = ({ children }) => {
     return null;
   });
 
-  useEffect(() => {
+ useEffect(() => {
+  if (user !== null) {
     localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+  } else {
+    localStorage.removeItem("user");
+  }
+}, [user]);
+
 
   const login = (userdata) => setUser(userdata);
-  const logout = () => { localStorage.clear();setUser(null)};
+  const logout = () => { localStorage.clear();setUser(null);localStorage.removeItem('user')};
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

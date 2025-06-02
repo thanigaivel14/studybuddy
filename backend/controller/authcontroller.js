@@ -32,14 +32,11 @@ export const reg = async (req, res) => {
 };
 export const login= async(req,res)=>{
   const{email,password}=req.body;
-  console.log(email)
-  console.log(password)
   try{
     const user=await User.findOne({email});
-     console.log(user)
     //checking user
     if(!user){
-      return res.status(400).json({message:"User not found"})
+      return res.status(404).json({message:"User not found"})
     }
     //existing user
     const match=await bcrypt.compare(password,user.password)

@@ -10,6 +10,7 @@ import { useAuth } from "./context/AuthContext";
 import React, { useState } from "react";
 
 import Addpost from "./components/Addpost";
+import About from "./components/About";
 
 const App = () => {
   const { user } = useAuth();
@@ -33,6 +34,9 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/about" element={<About />} />
+
+
             </Routes>
           </div>
         </main>

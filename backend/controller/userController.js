@@ -49,7 +49,7 @@ export const userupdate = async (req, res) => {
 
 // Upload new avatar
 export const uploadavatar = async (req, res) => {
-  console.log("uploaded called")
+  
   try {
     const user = await User.findById(req.id);
     if (!user) return res.status(404).json({ message: "User not found" });

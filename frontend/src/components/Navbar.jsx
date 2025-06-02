@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import logo from '../assests/logo.png';
-
 const Nav = () => {
   const { user, logout } = useAuth();
 
   const handleLogout = () => {
+    console.log("log out");
+    
     logout();
     localStorage.removeItem("user");
   };

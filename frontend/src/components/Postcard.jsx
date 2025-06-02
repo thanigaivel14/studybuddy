@@ -14,6 +14,7 @@ const PostCard = ({ post, currentUserId }) => {
   const token = localStorage.getItem("token");
   const likeuser = localStorage.getItem("user");
   const hasLiked = likes.some((id) => id?.toString() === currentUserId);
+  
 
   const handleLike = async () => {
     if (!token) return;
